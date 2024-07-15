@@ -8,7 +8,7 @@ interface ButtonProps {
 
 const Button = ({ text, type, ...rest }: ButtonProps) => {
   const { disabled } = rest
-  const buttonClass: string = disabled ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'
+  const buttonClass: string = disabled ? 'bg-gray-500' : 'bg-purple-500 hover:bg-purple-700'
   return (
     <button
       type={type}
