@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikProps } from 'formik'
 import FormikControl from './FormikControl.tsx'
 import * as Yup from 'yup'
 import Button from './FormComponents/Button.tsx'
@@ -33,7 +33,7 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Required'),
-  descrition: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
   selectOption: Yup.string().required('Required'),
   radioOption: Yup.string().required('Required'),
   checkboxOption: Yup.array().min(1, 'Required'),
@@ -48,15 +48,15 @@ const handleSubmit = (values: any) => {
 const FormikContainer = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      {() => (
+      {(formik: FormikProps<any>) => (
         <Form>
           <FormikControl control="input" type="email" label="Email" name="email" placeholder="Enter your email" />
           <FormikControl control="textarea" label="Description" name="description" placeholder="Description" />
-          <FormikControl control="select" label="Select an option" name="SelectOptions" options={selectOptions} />
-          <FormikControl control="radio" label="Radio group" name="RadioOption" options={radioOptions} />
-          <FormikControl control="checkbox" label="Checkbox group" name="CheckboxOption" options={checkboxOptions} />
+          <FormikControl control="select" label="Select an option" name="selectOption" options={selectOptions} />
+          <FormikControl control="radio" label="Radio group" name="radioOption" options={radioOptions} />
+          <FormikControl control="checkbox" label="Checkbox group" name="checkboxOption" options={checkboxOptions} />
           <FormikControl control="date" label="Date" name="date" placeholder="Pick a date" />
-          <Button text="Submit" type="submit" />
+          <Button text="Submit" type="submit" disabled={!formik.dirty || !formik.isValid || formik.isSubmitting} />
         </Form>
       )}
     </Formik>

@@ -5,13 +5,14 @@ interface ButtonProps {
 
   [key: string]: any
 }
+
 const Button = ({ text, type, ...rest }: ButtonProps) => {
   const { disabled } = rest
-  const buttonCLass: string = disabled ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'
+  const buttonClass: string = disabled ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-700'
   return (
     <button
       type={type}
-      className={`${buttonCLass} text-white font-bold py-2 px-4 rounded w-full`}
+      className={`${buttonClass} text-white font-bold py-2 px-4 rounded w-full`}
       {...rest}
       disabled={disabled}
     >
